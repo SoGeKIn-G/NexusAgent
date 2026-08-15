@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Only used for the pre-Compose window background, so the app doesn't flash the
+         wrong colour during launch. The real palette lives in :core:ui Theme.kt. -->
+    <color name="window_background">#FBFBFD</color>
+    <color name="ic_launcher_background">#1E1B4B</color>
+</resources>

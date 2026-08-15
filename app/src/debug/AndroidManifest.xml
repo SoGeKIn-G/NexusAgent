@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Debug-only additions. Merged into debug builds only, so none of this reaches a
+    release APK.
+
+    NOTE: adb command examples deliberately live in the Kotlin KDoc rather than here.
+    XML comments may not contain a double hyphen, and every adb extra flag is one.
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+        <!--
+            Benchmark hook. See DebugCaptureReceiver.
+
+            exported="true" so adb (a different uid) can reach it. Safe here because the
+            receiver only reads the screen the accessibility service is already permitted
+            to read, and it exists solely in debug builds.
+        -->
+        <receiver
+            android:name="com.nexusagent.debug.DebugCaptureReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nexusagent.CAPTURE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Execution hook. See DebugActionReceiver for usage. -->
+        <receiver
+            android:name="com.nexusagent.debug.DebugActionReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nexusagent.ACTION" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Single-step reasoning hook. See DebugDecideReceiver for usage. -->
+        <receiver
+            android:name="com.nexusagent.debug.DebugDecideReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nexusagent.DECIDE" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Loads a development API key. See DebugSetKeyReceiver. -->
+        <receiver
+            android:name="com.nexusagent.debug.DebugSetKeyReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nexusagent.SETKEY" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Starts and stops a full run. See DebugRunReceiver. -->
+        <receiver
+            android:name="com.nexusagent.debug.DebugRunReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.nexusagent.RUN" />
+                <action android:name="com.nexusagent.STOPRUN" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

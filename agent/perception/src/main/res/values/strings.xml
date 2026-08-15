@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="accessibility_service_label">NexusAgent</string>
+
+    <string name="accessibility_service_summary">Lets NexusAgent read the screen and perform taps on your behalf</string>
+
+    <!--
+        Shown on the system's accessibility consent screen. Be specific and honest here:
+        this is the one place the user is told exactly what they are granting.
+    -->
+    <string name="accessibility_service_description">NexusAgent uses this service to read the layout of whatever app is on screen and to perform taps, typing, and swipes for you, so it can carry out spoken instructions like \"set an alarm for 6am\".\n\nScreen contents are only read while a task is actively running, and you can stop a task at any time from the floating control bubble.</string>
+</resources>

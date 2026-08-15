@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- M4: talking to the reasoning API. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Intent fast path: lets set_alarm / set_timer complete without the Clock UI.
+         A normal permission, granted at install with no runtime prompt. -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
+    <!-- M6: tap-to-record voice input. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- M6: the floating thought bubble, drawn over whatever app the agent is driving. -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- M5: the run loop lives in a foreground service so it survives the UI backgrounding,
+         which it always does — the agent is by definition driving *other* apps. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Aggressive OEM power managers (MIUI, ColorOS, Funtouch) kill the service.
+         Used to prompt for a battery-optimization exemption during onboarding. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
+    <!--
+        Needed for the launch_app action: Android 11+ hides the installed-app list unless
+        the app declares visibility. This is a Play-restricted permission, which does not
+        constrain us — accessibility automation can't ship on Play anyway (see PLAN.md §7),
+        and NexusAgent is distributed as a sideloaded APK.
+    -->
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <application
+        android:name=".NexusApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NexusAgent">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.NexusAgent"
+            android:windowSoftInputMode="adjustResize">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            Keeps the process alive while a task runs. specialUse because no standard
+            foreground type describes "an agent operating the device on the user's behalf".
+        -->
+        <service
+            android:name=".agent.AgentService"
+            android:exported="false"
+            android:foregroundServiceType="specialUse">
+            <property
+                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+                android:value="Carries out a user-requested task by operating the device UI" />
+        </service>
+
+    </application>
+
+</manifest>

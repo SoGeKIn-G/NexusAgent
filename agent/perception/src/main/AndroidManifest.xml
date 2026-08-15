@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+
+        <!--
+            exported="true" is required: the system binds this service through the
+            intent filter below, and Android 12+ rejects a filtered service that isn't
+            exported. The BIND_ACCESSIBILITY_SERVICE permission is what actually
+            protects it — only the system holds that, so no other app can bind here.
+        -->
+        <!-- Fully qualified deliberately: a relative ".Name" in a library manifest can be
+             resolved against the merged application's namespace rather than this module's. -->
+        <service
+            android:name="com.nexusagent.agent.perception.NexusAccessibilityService"
+            android:exported="true"
+            android:label="@string/accessibility_service_label"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_config" />
+        </service>
+
+    </application>
+
+</manifest>

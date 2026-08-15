@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        Minimal platform theme. Compose owns all real styling (see :core:ui Theme.kt);
+        this exists only so the launch window uses the right background colour instead of
+        flashing white before the first frame. windowBackground is DayNight-aware via
+        values-night/colors.xml.
+    -->
+    <style name="Theme.NexusAgent" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/window_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+    </style>
+</resources>

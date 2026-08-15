@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    A nexus: one hub, three satellites, links between them. Drawn entirely as a vector so
+    the repo carries no binary image assets.
+    Adaptive-icon foregrounds are 108dp with only the centre 72dp guaranteed visible,
+    so all artwork sits between roughly 22 and 86.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- links -->
+    <path
+        android:strokeColor="#67E8F9"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M54,54 L54,30" />
+    <path
+        android:strokeColor="#67E8F9"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M54,54 L33,72" />
+    <path
+        android:strokeColor="#67E8F9"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M54,54 L75,72" />
+
+    <!-- hub -->
+    <path
+        android:fillColor="#A5B4FC"
+        android:pathData="M54,42 a12,12 0 1,0 0.01,0 z" />
+
+    <!-- satellites -->
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M54,23 a7,7 0 1,0 0.01,0 z" />
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M33,65 a7,7 0 1,0 0.01,0 z" />
+    <path
+        android:fillColor="#06B6D4"
+        android:pathData="M75,65 a7,7 0 1,0 0.01,0 z" />
+</vector>

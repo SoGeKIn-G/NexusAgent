@@ -1,0 +1,23 @@
+*.iml
+.gradle/
+.idea/
+.kotlin/
+build/
+local.properties
+secrets.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# Never commit API keys. The app stores them in encrypted DataStore at runtime.
+**/apikey.properties
+*api*.txt
+*api*key*
+*.key
+*secret*
+.env
+.env.*
